@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartAge Residence — Premium Living in Antalya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --white: #f8f8f3;
+            --blue: #103461;
+            --black: #252525;
+            --blue-light: #1a4a8a;
+            --gray: #6b7280;
+            --gray-light: #e5e5e0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--black);
+            background: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* ===== 1. HEADER ===== */
+        .header {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            background: transparent;
+            border-bottom: 1px solid transparent;
+            transition: background 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
+        }
+        .header.scrolled {
+            background: rgba(16, 52, 97, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(248, 248, 243, 0.1);
+        }
+        .header-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 40px; max-width: 1440px; margin: 0 auto;
+        }
+        .header-logo {
+            font-size: 18px; font-weight: 700; color: var(--white);
+            letter-spacing: 2px; white-space: nowrap;
+        }
+        .header-logo span { font-weight: 400; opacity: 0.7; }
+        .header-right { display: flex; align-items: center; gap: 24px; }
+        .header-contact-info { text-align: right; color: var(--white); }
+        .header-phone { font-size: 15px; font-weight: 600; letter-spacing: 0.5px; }
+        .header-address { font-size: 12px; opacity: 0.7; font-weight: 300; }
+        .header-messengers { display: flex; gap: 10px; }
+        .messenger-btn {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(248, 248, 243, 0.15);
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.3s; cursor: pointer;
+        }
+        .messenger-btn:hover { background: rgba(248, 248, 243, 0.3); }
+        .messenger-btn svg { width: 20px; height: 20px; fill: var(--white); }
+        .btn-contact {
+            padding: 10px 28px; background: var(--white); color: var(--blue);
+            border: none; border-radius: 30px; font-family: 'Poppins', sans-serif;
+            font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s;
+        }
+        .btn-contact:hover { background: #ffffff; transform: translateY(-1px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .lang-switcher { position: relative; }
+        .lang-btn {
+            display: flex; align-items: center; gap: 6px; background: none;
+            border: 1px solid rgba(248, 248, 243, 0.3); color: var(--white);
+            padding: 8px 16px; border-radius: 30px; font-family: 'Poppins', sans-serif;
+            font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.3s;
+        }
+        .lang-btn:hover { border-color: rgba(248, 248, 243, 0.6); }
+        .lang-btn svg { width: 16px; height: 16px; fill: none; stroke: var(--white); stroke-width: 1.5; }
+        .lang-dropdown {
+            display: none; position: absolute; top: calc(100% + 8px); right: 0;
+            background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            overflow: hidden; min-width: 140px;
+        }
+        .lang-dropdown.active { display: block; }
+        .lang-dropdown a { display: block; padding: 10px 20px; color: var(--black); font-size: 14px; font-weight: 500; transition: background 0.2s; }
+        .lang-dropdown a:hover { background: var(--white); }
+
+        /* ===== 2. HERO ===== */
+        .hero {
+            position: relative; height: 100vh; min-height: 700px;
+            display: flex; align-items: flex-end; overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0; z-index: 0;
+            background-image: url('Images/cover.jpeg');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .hero-overlay {
+            position: absolute; inset: 0; z-index: 1;
+            background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.75) 0%,
+                rgba(0, 0, 0, 0.35) 40%,
+                rgba(0, 0, 0, 0.1) 70%,
+                transparent 100%
+            );
+        }
+        .hero-content {
+            position: relative; z-index: 2; padding: 0 60px 100px; width: 100%;
+            display: flex; align-items: flex-end; justify-content: space-between;
+        }
+        .hero-left { max-width: 600px; }
+        .hero-subtitle-top {
+            font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+            color: rgba(248,248,243,0.7); font-weight: 400; margin-bottom: 16px;
+        }
+        .hero-title {
+            font-size: 72px; font-weight: 800; color: var(--white);
+            letter-spacing: 12px; text-transform: uppercase; line-height: 1.1; margin-bottom: 8px;
+        }
+        .hero-title-line2 {
+            font-size: 48px; font-weight: 300; letter-spacing: 4px;
+            color: var(--white);
+        }
+        .hero-right {
+            text-align: right; display: flex; flex-direction: column;
+            align-items: flex-end; gap: 24px;
+        }
+        .hero-slogan {
+            font-size: 24px; font-weight: 300;
+            color: var(--white); letter-spacing: 1px;
+        }
+        .hero-buttons { display: flex; gap: 16px; }
+        .btn-primary {
+            padding: 16px 40px; background: var(--blue); color: var(--white);
+            border: none; border-radius: 4px; font-family: 'Poppins', sans-serif;
+            font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.3s;
+            letter-spacing: 0.5px; display: inline-block; text-align: center;
+        }
+        .btn-primary:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(16,52,97,0.4); }
+        .btn-secondary {
+            padding: 16px 40px; background: var(--white); color: var(--black);
+            border: none; border-radius: 4px; font-family: 'Poppins', sans-serif;
+            font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.3s;
+            letter-spacing: 0.5px; display: inline-block; text-align: center;
+        }
+        .btn-secondary:hover { background: #ffffff; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .hero-scroll-down {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            z-index: 2; animation: bounce 2s infinite; cursor: pointer;
+        }
+        .hero-scroll-down svg { width: 32px; height: 32px; stroke: var(--white); opacity: 0.6; }
+        @keyframes bounce {
+            0%,20%,50%,80%,100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* ===== 3. DESCRIPTION WITH SLIDER ===== */
+        .description { padding: 120px 0; }
+        .description-inner { display: flex; gap: 80px; align-items: center; }
+        .description-slider-wrap {
+            flex: 1; min-width: 0; border-radius: 16px; overflow: hidden;
+            position: relative; aspect-ratio: 4/3;
+        }
+        .description-slider {
+            display: flex; width: 100%; height: 100%; transition: transform 0.5s ease;
+        }
+        .description-slide { min-width: 100%; height: 100%; }
+        .description-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .slider-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 44px; height: 44px; border-radius: 50%;
+            background: rgba(255,255,255,0.85); border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s; z-index: 5; box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+        .slider-btn:hover { background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+        .slider-btn svg { width: 18px; height: 18px; stroke: var(--black); stroke-width: 2.5; fill: none; }
+        .slider-btn-prev { left: 16px; }
+        .slider-btn-next { right: 16px; }
+        .slider-dots {
+            position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 8px; z-index: 5;
+        }
+        .slider-dot {
+            width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5);
+            border: none; cursor: pointer; transition: all 0.3s; padding: 0;
+        }
+        .slider-dot.active { background: #fff; width: 24px; border-radius: 4px; }
+
+        .description-text { flex: 1; min-width: 0; }
+        .section-label {
+            font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--blue); font-weight: 600; margin-bottom: 16px;
+        }
+        .section-title {
+            font-size: 40px; font-weight: 700; color: var(--black);
+            line-height: 1.2; margin-bottom: 28px;
+        }
+        .section-title span { color: var(--blue); }
+        .description-paragraph {
+            font-size: 16px; line-height: 1.8; color: var(--gray);
+            font-weight: 300; margin-bottom: 36px;
+        }
+        .btn-outline {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 14px 32px; border: 2px solid var(--blue); color: var(--blue);
+            border-radius: 4px; font-family: 'Poppins', sans-serif;
+            font-size: 14px; font-weight: 600; cursor: pointer;
+            transition: all 0.3s; background: none;
+        }
+        .btn-outline:hover { background: var(--blue); color: var(--white); }
+        .btn-outline svg { width: 16px; height: 16px; transition: transform 0.3s; }
+        .btn-outline:hover svg { transform: translateX(4px); }
+
+        /* ===== 4. FEATURES ===== */
+        .features { padding: 100px 0; background: var(--blue); color: var(--white); }
+        .features .section-label { color: rgba(248,248,243,0.5); }
+        .features .section-title { color: var(--white); margin-bottom: 60px; }
+        .features-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; }
+        .feature-card {
+            padding: 40px 32px; border: 1px solid rgba(248,248,243,0.1);
+            transition: background 0.3s;
+        }
+        .feature-card:hover { background: rgba(248,248,243,0.05); }
+        .feature-icon {
+            width: 48px; height: 48px; margin-bottom: 20px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .feature-icon svg { width: 36px; height: 36px; stroke: rgba(248,248,243,0.6); fill: none; stroke-width: 1.5; }
+        .feature-label {
+            font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+            opacity: 0.5; font-weight: 400; margin-bottom: 8px;
+        }
+        .feature-value { font-size: 20px; font-weight: 600; letter-spacing: 0.5px; }
+
+        /* ===== 5. ABOUT DEVELOPER ===== */
+        .developer {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #eae9e4 0%, #f2f1ec 50%, #e8e7e2 100%);
+        }
+        .developer-inner {
+            display: flex; gap: 80px; align-items: center;
+        }
+        .developer-left { flex: 1; }
+        .developer-right { flex: 1; display: flex; justify-content: center; }
+        .developer-logo-wrap {
+            width: 100%; max-width: 420px;
+            background: #000000;
+            border-radius: 0;
+            display: flex; align-items: center; justify-content: center;
+            padding: 48px;
+        }
+        .developer-logo-wrap img {
+            width: 100%; height: auto; object-fit: contain;
+        }
+        .developer-company {
+            font-size: 28px; font-weight: 700; letter-spacing: 3px;
+            margin-bottom: 28px; color: var(--black);
+        }
+        .developer-text {
+            font-size: 15px; line-height: 1.9; color: var(--gray); font-weight: 300;
+        }
+        .developer-text p + p { margin-top: 20px; }
+        .developer-stats {
+            display: flex; gap: 40px; margin-top: 60px; padding-top: 60px;
+            border-top: 1px solid rgba(37,37,37,0.1);
+        }
+        .stat-item { text-align: center; flex: 1; }
+        .stat-number {
+            font-size: 48px; font-weight: 800; color: var(--blue);
+            line-height: 1; margin-bottom: 8px;
+        }
+        .stat-number span { color: var(--black); font-size: 32px; }
+        .stat-text {
+            font-size: 13px; color: var(--gray); font-weight: 400;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        /* ===== 6. OUR PROJECTS ===== */
+        .projects {
+            padding: 100px 0 120px;
+            background: linear-gradient(180deg, #e8e7e2 0%, var(--white) 100%);
+        }
+        .projects .section-title { color: var(--black); margin-bottom: 60px; }
+        .projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+        .project-card {
+            position: relative; border-radius: 12px; overflow: hidden;
+            aspect-ratio: 4/3; background: linear-gradient(135deg, #c8d0d8, #a0b0c0);
+            cursor: pointer; transition: transform 0.3s;
+        }
+        .project-card:hover { transform: translateY(-6px); }
+        .project-card-placeholder {
+            position: absolute; inset: 0; display: flex; align-items: center;
+            justify-content: center; color: rgba(16,52,97,0.2);
+            font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+        }
+        .project-card-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 50%, transparent 70%);
+        }
+        .project-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; }
+        .project-card-title { font-size: 20px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+        .project-card-location { font-size: 13px; color: rgba(248,248,243,0.6); font-weight: 300; }
+
+        /* ===== 7. FLOOR PLANS ===== */
+        .floor-plans { padding: 120px 0; }
+        .floor-plans .section-title { margin-bottom: 60px; }
+        .plans-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; }
+        .plan-card {
+            border-radius: 16px; overflow: hidden;
+            border: 1px solid var(--gray-light); transition: all 0.3s;
+            background: white; display: flex; flex-direction: column;
+        }
+        .plan-card:hover { box-shadow: 0 20px 60px rgba(16,52,97,0.12); transform: translateY(-4px); }
+        .plan-image-wrap {
+            aspect-ratio: 1; background: #eceee8; display: flex;
+            align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+        .plan-image-wrap > img {
+            width: 100%; height: 100%; object-fit: contain; padding: 10px;
+        }
+        /* Plan slider for 3+1 */
+        .plan-slider-container {
+            position: relative; width: 100%; height: 100%;
+        }
+        .plan-slider-track {
+            display: flex; width: 100%; height: 100%; transition: transform 0.4s ease;
+        }
+        .plan-slider-slide {
+            min-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+        }
+        .plan-slider-slide img {
+            width: 100%; height: 100%; object-fit: contain; padding: 10px;
+        }
+        .plan-slider-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 36px; height: 36px; border-radius: 50%;
+            background: rgba(16,52,97,0.8); border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 3; transition: background 0.3s;
+        }
+        .plan-slider-btn:hover { background: var(--blue); }
+        .plan-slider-btn svg { width: 14px; height: 14px; stroke: #fff; stroke-width: 2.5; fill: none; }
+        .plan-slider-btn.prev { left: 8px; }
+        .plan-slider-btn.next { right: 8px; }
+        .plan-slider-dots {
+            position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 6px; z-index: 3;
+        }
+        .plan-slider-dot {
+            width: 8px; height: 8px; border-radius: 50%; border: none; padding: 0;
+            background: rgba(16,52,97,0.3); cursor: pointer; transition: background 0.3s;
+        }
+        .plan-slider-dot.active { background: var(--blue); }
+        .plan-badge {
+            position: absolute; top: 20px; left: 20px; z-index: 4;
+            background: var(--blue); color: var(--white);
+            padding: 6px 16px; border-radius: 20px; font-size: 14px; font-weight: 600;
+        }
+        .plan-details { padding: 32px; flex: 1; display: flex; flex-direction: column; }
+        .plan-type { font-size: 24px; font-weight: 700; color: var(--black); margin-bottom: 20px; }
+        .plan-features { list-style: none; margin-bottom: 24px; }
+        .plan-features li {
+            padding: 8px 0; font-size: 14px; color: var(--gray); font-weight: 400;
+            display: flex; align-items: center; gap: 12px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .plan-features li:last-child { border-bottom: none; }
+        .plan-features li::before {
+            content: ''; width: 6px; height: 6px; background: var(--blue);
+            border-radius: 50%; flex-shrink: 0;
+        }
+        .plan-area {
+            font-size: 15px; font-weight: 600; color: var(--blue); margin-bottom: 20px;
+        }
+        .btn-learn-more {
+            margin-top: auto; padding: 12px 24px; background: none;
+            border: 2px solid var(--blue); color: var(--blue); border-radius: 8px;
+            font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600;
+            cursor: pointer; transition: all 0.3s; text-align: center;
+        }
+        .btn-learn-more:hover { background: var(--blue); color: var(--white); }
+
+        /* ===== PLAN POPUP ===== */
+        .plan-popup-overlay {
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+            z-index: 2000; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .plan-popup-overlay.active { display: flex; }
+        .plan-popup {
+            background: var(--white); border-radius: 20px; max-width: 900px;
+            width: 100%; max-height: 90vh; overflow-y: auto;
+            position: relative; display: flex;
+        }
+        .plan-popup-close {
+            position: absolute; top: 16px; right: 16px; width: 40px; height: 40px;
+            border-radius: 50%; background: var(--white); border: 1px solid var(--gray-light);
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            z-index: 10; transition: background 0.3s;
+        }
+        .plan-popup-close:hover { background: #eee; }
+        .plan-popup-close svg { width: 18px; height: 18px; stroke: var(--black); stroke-width: 2; fill: none; }
+        .plan-popup-image {
+            flex: 1; min-width: 0; background: #eceee8;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 20px 0 0 20px; overflow: hidden; min-height: 400px;
+        }
+        .plan-popup-image img { width: 100%; height: 100%; object-fit: contain; padding: 20px; }
+        /* Popup slider */
+        .popup-slider-container { position: relative; width: 100%; height: 100%; }
+        .popup-slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.4s ease; }
+        .popup-slider-slide { min-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .popup-slider-slide img { width: 100%; height: 100%; object-fit: contain; padding: 20px; }
+        .popup-slider-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 36px; height: 36px; border-radius: 50%;
+            background: rgba(16,52,97,0.8); border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; z-index: 3;
+        }
+        .popup-slider-btn:hover { background: var(--blue); }
+        .popup-slider-btn svg { width: 14px; height: 14px; stroke: #fff; stroke-width: 2.5; fill: none; }
+        .popup-slider-btn.prev { left: 12px; }
+        .popup-slider-btn.next { right: 12px; }
+        .plan-popup-info {
+            flex: 1; min-width: 0; padding: 48px 40px;
+            display: flex; flex-direction: column;
+        }
+        .plan-popup-info .plan-type { font-size: 28px; }
+        .plan-popup-desc {
+            font-size: 14px; color: var(--gray); font-weight: 300;
+            line-height: 1.7; margin-bottom: 24px;
+        }
+        .plan-popup-buttons { display: flex; gap: 12px; margin-top: auto; }
+        .plan-popup-buttons .btn-primary { font-size: 13px; padding: 14px 24px; }
+        .plan-popup-buttons .btn-secondary { font-size: 13px; padding: 14px 24px; border: 1px solid var(--gray-light); }
+
+        /* ===== 8. MAP & DISTANCES ===== */
+        .map-section { padding: 120px 0; background: #f0f0eb; }
+        .map-section .section-title { margin-bottom: 60px; }
+        .map-inner { display: flex; gap: 60px; align-items: stretch; }
+        .map-container {
+            flex: 1.4; min-height: 480px; border-radius: 16px; overflow: hidden;
+            background: linear-gradient(135deg, #c8d0d8, #a0b0c0);
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(16,52,97,0.25); font-size: 14px; letter-spacing: 3px; text-transform: uppercase;
+        }
+        .distances-list { flex: 1; display: flex; flex-direction: column; gap: 28px; }
+        .distance-item-header {
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
+        }
+        .distance-left { display: flex; align-items: center; gap: 12px; }
+        .distance-icon {
+            width: 36px; height: 36px; border-radius: 8px; background: var(--blue);
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .distance-icon svg { width: 18px; height: 18px; stroke: var(--white); fill: none; stroke-width: 1.5; }
+        .distance-name { font-size: 14px; font-weight: 500; color: var(--black); }
+        .distance-value { font-size: 14px; font-weight: 600; color: var(--blue); }
+        .distance-bar {
+            position: relative; width: 100%; height: 4px;
+            background: var(--gray-light); border-radius: 2px;
+        }
+        .distance-bar-fill {
+            position: absolute; left: 0; top: 0; height: 100%;
+            background: var(--blue); border-radius: 2px; transition: width 0.6s ease;
+        }
+        .distance-bar-icons {
+            display: flex; justify-content: space-between; align-items: center; margin-top: 6px;
+        }
+        .distance-bar-icon {
+            width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
+        }
+        .distance-bar-icon svg { width: 16px; height: 16px; fill: none; stroke-width: 1.5; }
+        .distance-bar-icon.building svg { stroke: var(--blue); }
+        .distance-bar-icon.poi svg { stroke: var(--gray); }
+
+        /* ===== 9. CONTACT FORM ===== */
+        .contact-form-section { padding: 120px 0; background: var(--blue); }
+        .form-inner { display: flex; gap: 80px; align-items: center; }
+        .form-left { flex: 1; }
+        .form-left .section-title { color: var(--white); }
+        .form-subtitle { font-size: 16px; color: rgba(248,248,243,0.65); font-weight: 300; line-height: 1.7; }
+        .form-right { flex: 1; }
+        .contact-form { background: var(--white); border-radius: 16px; padding: 48px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 500; color: var(--black); margin-bottom: 8px; letter-spacing: 0.5px; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 14px 18px; border: 1px solid var(--gray-light);
+            border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 14px;
+            color: var(--black); background: #fafaf5; transition: border-color 0.3s; outline: none;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        .form-row { display: flex; gap: 16px; }
+        .form-row .form-group { flex: 1; }
+        .form-submit {
+            width: 100%; padding: 16px; background: var(--blue); color: var(--white);
+            border: none; border-radius: 8px; font-family: 'Poppins', sans-serif;
+            font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.3s; margin-top: 8px;
+        }
+        .form-submit:hover { background: var(--blue-light); }
+
+        /* ===== 10. FOOTER ===== */
+        .footer { padding: 60px 0 40px; background: var(--blue); border-top: 1px solid rgba(248,248,243,0.1); }
+        .footer-top {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            padding-bottom: 40px; border-bottom: 1px solid rgba(248,248,243,0.1); gap: 40px;
+        }
+        .footer-brand { max-width: 320px; }
+        .footer-logo { font-size: 18px; font-weight: 700; letter-spacing: 2px; margin-bottom: 16px; color: var(--white); }
+        .footer-logo span { font-weight: 400; opacity: 0.5; }
+        .footer-desc { font-size: 13px; color: rgba(248,248,243,0.5); font-weight: 300; line-height: 1.7; }
+        .footer-links-col h4 {
+            font-size: 13px; font-weight: 600; letter-spacing: 2px;
+            text-transform: uppercase; margin-bottom: 20px; color: rgba(248,248,243,0.5);
+        }
+        .footer-links-col a {
+            display: block; font-size: 14px; color: rgba(248,248,243,0.7);
+            font-weight: 300; margin-bottom: 12px; transition: color 0.2s;
+        }
+        .footer-links-col a:hover { color: var(--white); }
+        .footer-bottom {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 32px; flex-wrap: wrap; gap: 16px;
+        }
+        .footer-copyright { font-size: 12px; color: rgba(248,248,243,0.35); font-weight: 300; }
+        .footer-legal { display: flex; gap: 24px; }
+        .footer-legal a { font-size: 12px; color: rgba(248,248,243,0.35); font-weight: 300; transition: color 0.2s; }
+        .footer-legal a:hover { color: rgba(248,248,243,0.7); }
+        .footer-policy-note {
+            margin-top: 24px; font-size: 11px; color: rgba(248,248,243,0.25);
+            font-weight: 300; line-height: 1.7; max-width: 800px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .header-inner { padding: 12px 24px; }
+            .header-contact-info { display: none; }
+            .hero-title { font-size: 48px; letter-spacing: 8px; }
+            .hero-title-line2 { font-size: 32px; }
+            .hero-content { flex-direction: column; gap: 40px; padding: 0 40px 100px; }
+            .hero-right { align-items: flex-start; text-align: left; }
+            .description-inner, .developer-inner, .map-inner, .form-inner {
+                flex-direction: column; gap: 48px;
+            }
+            .features-grid { grid-template-columns: repeat(2,1fr); }
+            .projects-grid, .plans-grid { grid-template-columns: repeat(2,1fr); }
+            .plan-popup { flex-direction: column; }
+            .plan-popup-image { border-radius: 20px 20px 0 0; min-height: 300px; }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            .header-messengers { display: none; }
+
+            /* Hero mobile fixes */
+            .hero { min-height: 100vh; min-height: 100dvh; }
+            .hero-bg {
+                background-image: url('Images/cover.jpeg');
+                background-position: center;
+                background-size: cover;
+            }
+            .hero-content {
+                padding: 0 20px 40px;
+                flex-direction: column;
+                gap: 32px;
+                align-items: stretch;
+            }
+            .hero-right {
+                align-items: stretch;
+                text-align: center;
+            }
+            .hero-title { font-size: 36px; letter-spacing: 6px; }
+            .hero-title-line2 { font-size: 24px; }
+            .hero-slogan { font-size: 18px; text-align: center; }
+            .hero-buttons {
+                flex-direction: row;
+                width: 100%;
+                gap: 12px;
+            }
+            .hero-buttons .btn-primary,
+            .hero-buttons .btn-secondary {
+                flex: 1;
+                padding: 14px 8px;
+                font-size: 13px;
+                text-align: center;
+                white-space: nowrap;
+            }
+            .hero-scroll-down { display: none; }
+
+            .section-title { font-size: 30px; }
+            .description, .floor-plans, .map-section, .contact-form-section { padding: 80px 0; }
+            .description-slider-wrap { display: none; }
+            .features-grid { grid-template-columns: 1fr; }
+            .projects-grid, .plans-grid { grid-template-columns: 1fr; }
+            .developer-stats { flex-direction: column; gap: 24px; }
+            .developer-inner { flex-direction: column-reverse; gap: 40px; }
+            .developer-logo-wrap { max-width: 280px; padding: 32px; }
+            .form-row { flex-direction: column; gap: 0; }
+            .contact-form { padding: 32px 24px; }
+            .footer-top { flex-direction: column; }
+            .plan-popup { flex-direction: column; margin: 10px; }
+            .plan-popup-image { min-height: 250px; border-radius: 20px 20px 0 0; }
+            .plan-popup-info { padding: 28px 24px; }
+            .plan-popup-buttons { flex-direction: column; }
+            .map-inner { flex-direction: column; }
+        }
+
+        .mobile-menu-btn {
+            display: none; background: none; border: none; cursor: pointer; padding: 8px;
+        }
+        .mobile-menu-btn span {
+            display: block; width: 24px; height: 2px; background: var(--white); margin: 5px 0; transition: all 0.3s;
+        }
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            .header-right { display: none; }
+            .header-right.active {
+                display: flex; flex-direction: column; position: absolute;
+                top: 100%; left: 0; right: 0;
+                background: rgba(16, 52, 97, 0.95);
+                backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+                padding: 24px; gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== 1. HEADER ===== -->
+    <header class="header" id="mainHeader">
+        <div class="header-inner">
+            <a href="#" class="header-logo">SmartAge <span>| KIRMAN INSAAT</span></a>
+            <button class="mobile-menu-btn" onclick="document.querySelector('.header-right').classList.toggle('active')">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="header-right">
+                <div class="header-contact-info">
+                    <div class="header-phone">+90 (XXX) XXX XX XX</div>
+                    <div class="header-address">Hurma, Konyaalti, Antalya</div>
+                </div>
+                <div class="header-messengers">
+                    <a href="#" class="messenger-btn" title="WhatsApp">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.616l4.573-1.462A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.24 0-4.326-.723-6.02-1.95l-.422-.318-2.731.873.896-2.672-.347-.453A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                    </a>
+                    <a href="#" class="messenger-btn" title="Telegram">
+                        <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    </a>
+                </div>
+                <a href="#contact" class="btn-contact">Contact Us</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn" onclick="this.nextElementSibling.classList.toggle('active')">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z"/></svg>
+                        EN
+                    </button>
+                    <div class="lang-dropdown">
+                        <a href="#">English</a>
+                        <a href="#">Türkçe</a>
+                        <a href="#">Русский</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== 2. HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-left">
+                <p class="hero-subtitle-top">A Brand New Premium Project in Konyaalti</p>
+                <h1 class="hero-title">SMARTAGE</h1>
+                <p class="hero-title-line2">Residence</p>
+            </div>
+            <div class="hero-right">
+                <p class="hero-slogan">New quality of your life</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">Get Special Offer</a>
+                    <a href="#" class="btn-secondary">Get Pricing</a>
+                </div>
+            </div>
+        </div>
+        <a href="#about" class="hero-scroll-down">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+    </section>
+
+    <!-- ===== 3. DESCRIPTION WITH SLIDER ===== -->
+    <section class="description" id="about">
+        <div class="container">
+            <div class="description-inner">
+                <div class="description-slider-wrap">
+                    <div class="description-slider" id="descSlider">
+                        <div class="description-slide"><img src="./Images/WhatsApp Image 2025-12-25 at 14.32.57.jpeg" alt="SmartAge view 1"></div>
+                        <div class="description-slide"><img src="./Images/WhatsApp Image 2025-12-25 at 14.32.58 (1).jpeg" alt="SmartAge view 2"></div>
+                        <div class="description-slide"><img src="./Images/WhatsApp Image 2025-12-25 at 14.32.58 (2).jpeg" alt="SmartAge view 3"></div>
+                        <div class="description-slide"><img src="./Images/WhatsApp Image 2025-12-25 at 14.32.59.jpeg" alt="SmartAge view 4"></div>
+                        <div class="description-slide"><img src="./Images/WhatsApp Image 2025-12-26 at 15.39.28.jpeg" alt="SmartAge view 5"></div>
+                    </div>
+                    <button class="slider-btn slider-btn-prev" onclick="moveDescSlider(-1)">
+                        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                    <button class="slider-btn slider-btn-next" onclick="moveDescSlider(1)">
+                        <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
+                    <div class="slider-dots" id="descDots"></div>
+                </div>
+                <div class="description-text">
+                    <p class="section-label">About the Project</p>
+                    <h2 class="section-title">Where Your <span>New Life</span> Begins</h2>
+                    <p class="description-paragraph">
+                        Surrounded by mountain views and protected by a private, gated setting, this residence offers a rare sense of calm. Built with high-quality, environmentally conscious materials, it is a place where privacy, nature, and modern living exist in perfect balance.
+                    </p>
+                    <a href="#" class="btn-outline">
+                        Learn More on Sahibinden
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 4. FEATURES ===== -->
+    <section class="features" id="features">
+        <div class="container">
+            <p class="section-label">Key Details</p>
+            <h2 class="section-title">Project at a Glance</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                    <p class="feature-label">Location</p>
+                    <p class="feature-value">Hurma, Konyaalti</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+                    <p class="feature-label">End of Construction</p>
+                    <p class="feature-value">Q3 2026</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+                    <p class="feature-label">Apartments Left</p>
+                    <p class="feature-value">73</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M2 20l2-2m0 0l4-4m-4 4l-2-2m4 2l4-4m2-6a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round"/></svg></div>
+                    <p class="feature-label">Distance to Beach</p>
+                    <p class="feature-value">2.7 km</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                    <p class="feature-label">Privacy</p>
+                    <p class="feature-value">24/7</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+                    <p class="feature-label">Apartment Types</p>
+                    <p class="feature-value">1+1 / 2+1 / 3+1</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>
+                    <p class="feature-label">Land Area</p>
+                    <p class="feature-value">3.4 km²</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+                    <p class="feature-label">Distance to Hospital</p>
+                    <p class="feature-value">750 m</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 5. ABOUT DEVELOPER ===== -->
+    <section class="developer" id="developer">
+        <div class="container">
+            <div class="developer-inner">
+                <div class="developer-left">
+                    <p class="section-label">About Us</p>
+                    <h2 class="section-title">Who Are We?</h2>
+                    <p class="developer-company">KIRMAN INSAAT</p>
+                    <div class="developer-text">
+                        <p>Founded in the early 2000s with the mission of constructing world-class, high-quality, and modern buildings, Kirman Insaat continues to develop projects in line with this mission.</p>
+                        <p>Our company, operating with an experienced, young, and dynamic team of architects and engineers, is currently on its way to becoming one of the first companies that comes to mind when it comes to luxury residential projects, as well as large-scale projects such as hotels and shopping malls, especially in Antalya and its surroundings.</p>
+                    </div>
+                </div>
+                <div class="developer-right">
+                    <div class="developer-logo-wrap">
+                        <img src="./Images/kirman logo.png" alt="Kirman Insaat Logo">
+                    </div>
+                </div>
+            </div>
+            <div class="developer-stats">
+                <div class="stat-item">
+                    <div class="stat-number">20<span>+</span></div>
+                    <div class="stat-text">Years of Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">20<span>+</span></div>
+                    <div class="stat-text">Projects Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100<span>+</span></div>
+                    <div class="stat-text">People in the Team</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 6. OUR PROJECTS ===== -->
+    <section class="projects">
+        <div class="container">
+            <h2 class="section-title">Our Projects</h2>
+            <div class="projects-grid">
+                <a href="#" class="project-card"><div class="project-card-placeholder">[ Project Image ]</div><div class="project-card-overlay"></div><div class="project-card-info"><h3 class="project-card-title">Project Name 1</h3><p class="project-card-location">Antalya, Turkey</p></div></a>
+                <a href="#" class="project-card"><div class="project-card-placeholder">[ Project Image ]</div><div class="project-card-overlay"></div><div class="project-card-info"><h3 class="project-card-title">Project Name 2</h3><p class="project-card-location">Antalya, Turkey</p></div></a>
+                <a href="#" class="project-card"><div class="project-card-placeholder">[ Project Image ]</div><div class="project-card-overlay"></div><div class="project-card-info"><h3 class="project-card-title">Project Name 3</h3><p class="project-card-location">Antalya, Turkey</p></div></a>
+                <a href="#" class="project-card"><div class="project-card-placeholder">[ Project Image ]</div><div class="project-card-overlay"></div><div class="project-card-info"><h3 class="project-card-title">Project Name 4</h3><p class="project-card-location">Antalya, Turkey</p></div></a>
+                <a href="#" class="project-card"><div class="project-card-placeholder">[ Project Image ]</div><div class="project-card-overlay"></div><div class="project-card-info"><h3 class="project-card-title">Project Name 5</h3><p class="project-card-location">Antalya, Turkey</p></div></a>
+                <a href="#" class="project-card"><div class="project-card-placeholder">[ Project Image ]</div><div class="project-card-overlay"></div><div class="project-card-info"><h3 class="project-card-title">Project Name 6</h3><p class="project-card-location">Antalya, Turkey</p></div></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 7. FLOOR PLANS ===== -->
+    <section class="floor-plans" id="plans">
+        <div class="container">
+            <p class="section-label">Floor Plans</p>
+            <h2 class="section-title">Choose Your Layout</h2>
+            <div class="plans-grid">
+                <!-- 1+1 -->
+                <div class="plan-card">
+                    <div class="plan-image-wrap">
+                        <div class="plan-badge">1+1</div>
+                        <img src="./Images/Floor plans/1+1.jpg" alt="1+1 Floor Plan">
+                    </div>
+                    <div class="plan-details">
+                        <h3 class="plan-type">1+1 Apartment</h3>
+                        <ul class="plan-features">
+                            <li>Heated floors</li>
+                            <li>Private terrace options</li>
+                            <li>Large balcony options</li>
+                        </ul>
+                        <p class="plan-area">From 63.4 m²</p>
+                        <button class="btn-learn-more" onclick="openPlanPopup('1+1')">Learn More</button>
+                    </div>
+                </div>
+                <!-- 2+1 -->
+                <div class="plan-card">
+                    <div class="plan-image-wrap">
+                        <div class="plan-badge">2+1</div>
+                        <img src="./Images/Floor plans/2+1.jpg" alt="2+1 Floor Plan">
+                    </div>
+                    <div class="plan-details">
+                        <h3 class="plan-type">2+1 Apartment</h3>
+                        <ul class="plan-features">
+                            <li>Heated floors</li>
+                            <li>Duplex options</li>
+                            <li>Large terrace options</li>
+                        </ul>
+                        <p class="plan-area">From ___ m²</p>
+                        <button class="btn-learn-more" onclick="openPlanPopup('2+1')">Learn More</button>
+                    </div>
+                </div>
+                <!-- 3+1 with slider -->
+                <div class="plan-card">
+                    <div class="plan-image-wrap">
+                        <div class="plan-badge">3+1</div>
+                        <div class="plan-slider-container">
+                            <div class="plan-slider-track" id="planSliderTrack">
+                                <div class="plan-slider-slide"><img src="./Images/Floor plans/3+1.jpg" alt="3+1 Floor 1"></div>
+                                <div class="plan-slider-slide"><img src="./Images/Floor plans/3+1 2.jpg" alt="3+1 Floor 2"></div>
+                            </div>
+                            <button class="plan-slider-btn prev" onclick="movePlanSlider(-1)">
+                                <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+                            </button>
+                            <button class="plan-slider-btn next" onclick="movePlanSlider(1)">
+                                <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+                            </button>
+                            <div class="plan-slider-dots">
+                                <button class="plan-slider-dot active" onclick="goToPlanSlide(0)"></button>
+                                <button class="plan-slider-dot" onclick="goToPlanSlide(1)"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="plan-details">
+                        <h3 class="plan-type">3+1 Apartment</h3>
+                        <ul class="plan-features">
+                            <li>Heated floors</li>
+                            <li>Duplex with large terrace</li>
+                            <li>Panoramic view</li>
+                        </ul>
+                        <p class="plan-area">From ___ m²</p>
+                        <button class="btn-learn-more" onclick="openPlanPopup('3+1')">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PLAN POPUP ===== -->
+    <div class="plan-popup-overlay" id="planPopup" onclick="if(event.target===this)closePlanPopup()">
+        <div class="plan-popup">
+            <button class="plan-popup-close" onclick="closePlanPopup()">
+                <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <div class="plan-popup-image" id="popupImageArea"></div>
+            <div class="plan-popup-info">
+                <h3 class="plan-type" id="popupTitle"></h3>
+                <ul class="plan-features" id="popupFeatures"></ul>
+                <p class="plan-area" id="popupArea"></p>
+                <p class="plan-popup-desc" id="popupDesc"></p>
+                <div class="plan-popup-buttons">
+                    <a href="#contact" class="btn-primary" onclick="closePlanPopup()">Get Special Offer</a>
+                    <a href="#" class="btn-secondary">Get Catalog</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 8. MAP & DISTANCES ===== -->
+    <section class="map-section" id="location">
+        <div class="container">
+            <p class="section-label">Location</p>
+            <h2 class="section-title">Explore the Neighborhood</h2>
+            <div class="map-inner">
+                <div class="map-container">[ Map Placeholder — Embed Google Maps Here ]</div>
+                <div class="distances-list">
+                    <div class="distance-item">
+                        <div class="distance-item-header">
+                            <div class="distance-left"><div class="distance-icon"><svg viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><span class="distance-name">Beach</span></div>
+                            <span class="distance-value">2.7 km</span>
+                        </div>
+                        <div class="distance-bar"><div class="distance-bar-fill" style="width:54%"></div></div>
+                        <div class="distance-bar-icons">
+                            <div class="distance-bar-icon building"><svg viewBox="0 0 24 24"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21V13h6v8"/></svg></div>
+                            <div class="distance-bar-icon poi"><svg viewBox="0 0 24 24"><path d="M14 6a4 4 0 11-8 0M2 20l2-4h4l2 4M18 20l-4-8h-2"/><circle cx="17" cy="6" r="3"/></svg></div>
+                        </div>
+                    </div>
+                    <div class="distance-item">
+                        <div class="distance-item-header">
+                            <div class="distance-left"><div class="distance-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><span class="distance-name">Hospital</span></div>
+                            <span class="distance-value">750 m</span>
+                        </div>
+                        <div class="distance-bar"><div class="distance-bar-fill" style="width:15%"></div></div>
+                        <div class="distance-bar-icons">
+                            <div class="distance-bar-icon building"><svg viewBox="0 0 24 24"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21V13h6v8"/></svg></div>
+                            <div class="distance-bar-icon poi"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+                        </div>
+                    </div>
+                    <div class="distance-item">
+                        <div class="distance-item-header">
+                            <div class="distance-left"><div class="distance-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><span class="distance-name">City Center</span></div>
+                            <span class="distance-value">12 km</span>
+                        </div>
+                        <div class="distance-bar"><div class="distance-bar-fill" style="width:80%"></div></div>
+                        <div class="distance-bar-icons">
+                            <div class="distance-bar-icon building"><svg viewBox="0 0 24 24"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21V13h6v8"/></svg></div>
+                            <div class="distance-bar-icon poi"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                        </div>
+                    </div>
+                    <div class="distance-item">
+                        <div class="distance-item-header">
+                            <div class="distance-left"><div class="distance-icon"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></div><span class="distance-name">Airport</span></div>
+                            <span class="distance-value">25 km</span>
+                        </div>
+                        <div class="distance-bar"><div class="distance-bar-fill" style="width:100%"></div></div>
+                        <div class="distance-bar-icons">
+                            <div class="distance-bar-icon building"><svg viewBox="0 0 24 24"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21V13h6v8"/></svg></div>
+                            <div class="distance-bar-icon poi"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+                        </div>
+                    </div>
+                    <div class="distance-item">
+                        <div class="distance-item-header">
+                            <div class="distance-left"><div class="distance-icon"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div><span class="distance-name">Shopping Mall</span></div>
+                            <span class="distance-value">3 km</span>
+                        </div>
+                        <div class="distance-bar"><div class="distance-bar-fill" style="width:40%"></div></div>
+                        <div class="distance-bar-icons">
+                            <div class="distance-bar-icon building"><svg viewBox="0 0 24 24"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21V13h6v8"/></svg></div>
+                            <div class="distance-bar-icon poi"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
+                        </div>
+                    </div>
+                    <div class="distance-item">
+                        <div class="distance-item-header">
+                            <div class="distance-left"><div class="distance-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2V3z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7V3z"/></svg></div><span class="distance-name">School</span></div>
+                            <span class="distance-value">1.2 km</span>
+                        </div>
+                        <div class="distance-bar"><div class="distance-bar-fill" style="width:24%"></div></div>
+                        <div class="distance-bar-icons">
+                            <div class="distance-bar-icon building"><svg viewBox="0 0 24 24"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21V13h6v8"/></svg></div>
+                            <div class="distance-bar-icon poi"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2V3z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7V3z"/></svg></div>
+                        </div>
+                    </div>
+                    <div class="distance-item">
+                        <div class="distance-item-header">
+                            <div class="distance-left"><div class="distance-icon"><svg viewBox="0 0 24 24"><path d="M12 3c-1.5 0-3 .5-4 2-2 3-1 7 3 9v7m0-7c4-2 5-6 3-9-1-1.5-2.5-2-4-2m5 18H7"/></svg></div><span class="distance-name">Park</span></div>
+                            <span class="distance-value">500 m</span>
+                        </div>
+                        <div class="distance-bar"><div class="distance-bar-fill" style="width:10%"></div></div>
+                        <div class="distance-bar-icons">
+                            <div class="distance-bar-icon building"><svg viewBox="0 0 24 24"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21V13h6v8"/></svg></div>
+                            <div class="distance-bar-icon poi"><svg viewBox="0 0 24 24"><path d="M12 3c-1.5 0-3 .5-4 2-2 3-1 7 3 9v7m0-7c4-2 5-6 3-9-1-1.5-2.5-2-4-2m5 18H7"/></svg></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 9. CONTACT FORM ===== -->
+    <section class="contact-form-section" id="contact">
+        <div class="container">
+            <div class="form-inner">
+                <div class="form-left">
+                    <p class="section-label" style="color:rgba(248,248,243,0.4);">Get in Touch</p>
+                    <h2 class="section-title">Request Your <br>Special Offer</h2>
+                    <p class="form-subtitle">Fill out the form and our manager will contact you within 15 minutes to discuss available apartments and current pricing.</p>
+                </div>
+                <div class="form-right">
+                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! We will contact you shortly.');">
+                        <div class="form-row">
+                            <div class="form-group"><label for="firstName">First Name</label><input type="text" id="firstName" placeholder="Your name" required></div>
+                            <div class="form-group"><label for="lastName">Last Name</label><input type="text" id="lastName" placeholder="Your last name"></div>
+                        </div>
+                        <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" placeholder="+1 (___) ___-____" required></div>
+                        <div class="form-group"><label for="email">Email</label><input type="email" id="email" placeholder="your@email.com"></div>
+                        <div class="form-group">
+                            <label for="apartment">Apartment Type</label>
+                            <select id="apartment"><option value="">Select preferred layout</option><option value="1+1">1+1</option><option value="2+1">2+1</option><option value="3+1">3+1</option></select>
+                        </div>
+                        <div class="form-group"><label for="message">Message (optional)</label><textarea id="message" placeholder="Any additional questions or requests..."></textarea></div>
+                        <button type="submit" class="form-submit">Get Special Offer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 10. FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">SmartAge <span>| KIRMAN INSAAT</span></div>
+                    <p class="footer-desc">Premium residential project in Konyaalti, Antalya. A new standard of modern living surrounded by nature.</p>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Navigation</h4>
+                    <a href="#about">About</a><a href="#features">Features</a><a href="#plans">Floor Plans</a><a href="#location">Location</a><a href="#contact">Contact</a>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Contact</h4>
+                    <a href="#">+90 (XXX) XXX XX XX</a><a href="#">info@smartage-residence.com</a><a href="#">Hurma, Konyaalti, Antalya</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2026 SmartAge Residence by Kirman Insaat. All rights reserved.</p>
+                <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Cookie Policy</a></div>
+            </div>
+            <p class="footer-policy-note">By submitting your personal data through the forms on this website, you consent to the processing of your personal information in accordance with our Privacy Policy. The information provided on this website, including pricing, layouts, and availability, is for informational purposes only and does not constitute a public offer. The developer reserves the right to make changes to the project specifications. All images and renders are for illustrative purposes and may differ from the final product.</p>
+        </div>
+    </footer>
+
+    <script>
+        /* ===== Header scroll effect ===== */
+        (function() {
+            var header = document.getElementById('mainHeader');
+            var hero = document.getElementById('hero');
+            function checkScroll() {
+                var heroBottom = hero.offsetHeight;
+                if (window.scrollY > heroBottom - 80) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+            window.addEventListener('scroll', checkScroll, { passive: true });
+            checkScroll();
+        })();
+
+        /* ===== Language dropdown close ===== */
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.lang-switcher')) {
+                document.querySelectorAll('.lang-dropdown').forEach(function(d) { d.classList.remove('active'); });
+            }
+        });
+
+        /* ===== Description Slider ===== */
+        var descIndex = 0;
+        var descSlides = document.querySelectorAll('#descSlider .description-slide');
+        var descTotal = descSlides.length;
+        var descDotsContainer = document.getElementById('descDots');
+        for (var i = 0; i < descTotal; i++) {
+            var dot = document.createElement('button');
+            dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('data-index', i);
+            dot.onclick = function() { goToDescSlide(parseInt(this.getAttribute('data-index'))); };
+            descDotsContainer.appendChild(dot);
+        }
+        function moveDescSlider(dir) { descIndex = (descIndex + dir + descTotal) % descTotal; updateDescSlider(); }
+        function goToDescSlide(i) { descIndex = i; updateDescSlider(); }
+        function updateDescSlider() {
+            document.getElementById('descSlider').style.transform = 'translateX(-' + (descIndex * 100) + '%)';
+            descDotsContainer.querySelectorAll('.slider-dot').forEach(function(d, idx) { d.classList.toggle('active', idx === descIndex); });
+        }
+        setInterval(function() { moveDescSlider(1); }, 5000);
+
+        /* ===== 3+1 Plan Slider ===== */
+        var planSlideIndex = 0;
+        var planSlideTotal = 2;
+        function movePlanSlider(dir) { planSlideIndex = (planSlideIndex + dir + planSlideTotal) % planSlideTotal; updatePlanSlider(); }
+        function goToPlanSlide(i) { planSlideIndex = i; updatePlanSlider(); }
+        function updatePlanSlider() {
+            document.getElementById('planSliderTrack').style.transform = 'translateX(-' + (planSlideIndex * 100) + '%)';
+            document.querySelectorAll('.plan-slider-dot').forEach(function(d, idx) { d.classList.toggle('active', idx === planSlideIndex); });
+        }
+
+        /* ===== Plan Popup ===== */
+        var planData = {
+            '1+1': {
+                title: '1+1 Apartment',
+                features: ['Heated floors', 'Private terrace options', 'Large balcony options'],
+                area: 'From 63.4 m\u00B2',
+                desc: 'A perfectly designed one-bedroom apartment offering the ideal balance of comfort and functionality. Features modern finishes, an open-plan kitchen, and generous natural light throughout. Perfect for singles, couples, or as an investment property.',
+                images: ['./Images/Floor plans/1+1.jpg']
+            },
+            '2+1': {
+                title: '2+1 Apartment',
+                features: ['Heated floors', 'Duplex options', 'Large terrace options'],
+                area: 'From ___ m\u00B2',
+                desc: 'A spacious two-bedroom layout designed for growing families or those who desire extra space. Features a separate living area, well-proportioned bedrooms, and options for duplex configurations with a large terrace.',
+                images: ['./Images/Floor plans/2+1.jpg']
+            },
+            '3+1': {
+                title: '3+1 Apartment',
+                features: ['Heated floors', 'Duplex with large terrace', 'Panoramic view'],
+                area: 'From ___ m\u00B2',
+                desc: 'The flagship duplex apartment offering three bedrooms spread across two floors. Enjoy panoramic mountain and city views from the expansive terrace, with premium finishes and generous living spaces throughout.',
+                images: ['./Images/Floor plans/3+1.jpg', './Images/Floor plans/3+1 2.jpg']
+            }
+        };
+        var popupSliderIndex = 0;
+        var popupSliderTotal = 0;
+
+        function openPlanPopup(type) {
+            var data = planData[type];
+            document.getElementById('popupTitle').textContent = data.title;
+            document.getElementById('popupArea').textContent = data.area;
+            document.getElementById('popupDesc').textContent = data.desc;
+            var featList = document.getElementById('popupFeatures');
+            featList.innerHTML = '';
+            data.features.forEach(function(f) { var li = document.createElement('li'); li.textContent = f; featList.appendChild(li); });
+
+            var imageArea = document.getElementById('popupImageArea');
+            if (data.images && data.images.length > 1) {
+                popupSliderTotal = data.images.length;
+                popupSliderIndex = 0;
+                var html = '<div class="popup-slider-container"><div class="popup-slider-track" id="popupSliderTrack">';
+                data.images.forEach(function(src) { html += '<div class="popup-slider-slide"><img src="' + src + '" alt="Floor plan"></div>'; });
+                html += '</div><button class="popup-slider-btn prev" onclick="movePopupSlider(-1)"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>';
+                html += '<button class="popup-slider-btn next" onclick="movePopupSlider(1)"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button></div>';
+                imageArea.innerHTML = html;
+            } else if (data.images && data.images.length === 1) {
+                imageArea.innerHTML = '<img src="' + data.images[0] + '" alt="Floor plan">';
+            } else {
+                imageArea.innerHTML = '<div style="color:rgba(16,52,97,0.25);font-size:13px;letter-spacing:3px;text-transform:uppercase;">[ Floor Plan Image ]</div>';
+            }
+            document.getElementById('planPopup').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function movePopupSlider(dir) {
+            popupSliderIndex = (popupSliderIndex + dir + popupSliderTotal) % popupSliderTotal;
+            var track = document.getElementById('popupSliderTrack');
+            if (track) track.style.transform = 'translateX(-' + (popupSliderIndex * 100) + '%)';
+        }
+
+        function closePlanPopup() {
+            document.getElementById('planPopup').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closePlanPopup(); });
+    </script>
+
+</body>
+</html>
